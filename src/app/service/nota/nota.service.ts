@@ -15,8 +15,8 @@ export class NotaService extends RestService {
         http: Http
     ) { super(http); }
 
-    public getAllNotasPorEmpresa(cdtri: String): Observable<Nota[]> {
-        const getAllUrl = this.baseURL + '?cdtri=' + cdtri + '&de=2012-04-19&ate=2012-04-19';
+    public getAllNotasPorEmpresa(cdtri: String, periodoDe: string, periodoAte: string): Observable<Nota[]> {
+        const getAllUrl = this.baseURL + '?cdtri=' + cdtri + '&de=' + periodoDe + '&ate=' + periodoAte;
         return this.get(getAllUrl);
     }
 

@@ -21,6 +21,9 @@ export class ListagemComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   @Input() descEmpresa: string;
+  @Input() periodoDe: string;
+  @Input() periodoAte: string;
+  cdtri: string = '';
 
 
   constructor(
@@ -42,10 +45,13 @@ export class ListagemComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  getNotas(cdtri: string): void {
-    this.serviceNota.getAllNotasPorEmpresa(cdtri).subscribe(
+  getNotas(cdtri: string, periodoDe: string, periodoAte: string): void {
+    this.serviceNota.getAllNotasPorEmpresa(cdtri, periodoDe, periodoAte).subscribe(
       (success: any) => {
-        console.log(success);
+        
+        if(success.notas.length == 0){
+          alert('Sem notas no período consultado');
+        }
         this.dataSource.data = success.notas;
       },
       error => {
@@ -78,7 +84,9 @@ export class ListagemComponent implements OnInit, AfterViewInit {
         (success: any) => {
           if (success.empresas[0] != undefined) {
             this.descEmpresa = success.empresas[0].dsemp;
-            this.getNotas(cdtri);
+           this.cdtri = cdtri;
+          //  this.getNotas(cdtri);
+          
           } else if (success.empresas.length == 0) {
             this.descEmpresa = 'Empresa não Encontrada';
           } else {
@@ -92,6 +100,16 @@ export class ListagemComponent implements OnInit, AfterViewInit {
     } else {
       this.descEmpresa = '';
     }
+  }
+
+  buscarNotas(){
+
+    if(this.periodoDe == undefined || this.periodoAte == undefined){
+      alert('Períodos obrigatórios');
+    } else {
+      this.getNotas(this.cdtri, this.periodoDe, this.periodoAte);
+    }
+    
   }
 
 }

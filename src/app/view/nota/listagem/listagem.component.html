@@ -1,31 +1,44 @@
 <section id="perfils">
   <div class="card blue-gray darken-1">
-    <h3 class=header>Notas <span class="small"> - por empresas</span></h3>
+    <h3 class=header>Notas <span class="small"> - por Empresa</span></h3>
     <div class="divider"></div>
     <div class="space"></div>
     <div class="row">
       <div class="col s6">
-        
 
-        <div class="row"  >
-            <div class="input-field col s12">
-              <input id="buscarPorEmpresa" type="text" (keydown.enter)="buscaPorEmpresa($event.target.value)">
-              <label for="buscarPorEmpresa">Pesquisa Empresa</label>
-            </div>
+
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="buscarPorEmpresa" type="text" (keydown.enter)="buscaPorEmpresa($event.target.value)">
+            <label for="buscarPorEmpresa">Pesquisa Empresa</label>
+          </div>
         </div>
-         
-        <div class="row"  >
+
+        <div class="row">
           <div class=" col s12">
             <p>{{descEmpresa}}</p>
           </div>
-      </div>
 
-      <div class="row" *ngIf="this.dataSource.data.length > 0" >
-        <div class="input-field col s12">
-          <input id="filtro" type="text" (keyup)="applyFilter($event.target.value)">
-          <label for="filtro">Filtrar</label>
+
+          <div class="col s6" *ngIf="this.cdtri != ''">
+            <p>De</p>
+            <input [(ngModel)]="periodoDe" type="date">
+            <p>Até</p>
+            <input [(ngModel)]="periodoAte" type="date">
+
+            <input type="button" value="Consultar Notas" (click)="buscarNotas()">
+
+          </div>
+
+
         </div>
-      </div>
+
+        <div class="row" *ngIf="this.dataSource.data.length > 0">
+          <div class="input-field col s12">
+            <input id="filtro" type="text" (keyup)="applyFilter($event.target.value)">
+            <label for="filtro">Filtrar</label>
+          </div>
+        </div>
 
       </div>
       <div class="col s6" *ngIf="true == false">
