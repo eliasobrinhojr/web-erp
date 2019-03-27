@@ -15,6 +15,8 @@ export class EmpresaService extends RestService {
     http: Http
   ) { super(http); }
 
+  
+
   public getOne(id: String): Observable<Empresa> {
     const getAllUrl = this.baseURL + '?cdtri=' + id;
     return this.get(getAllUrl);

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ListagemComponent } from './view/produto/listagem/listagem.component';
-import { CadastroComponent } from './view/produto/cadastro/cadastro.component';
+import { ListagemComponent } from './view/nota/listagem/listagem.component';
+import { CadastroComponent } from './view/nota/cadastro/cadastro.component';
 
 export const appRoutes: Routes = [
     { path: '', component: ListagemComponent },

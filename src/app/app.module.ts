@@ -1,10 +1,11 @@
+import { NotaService } from './service/nota/nota.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { ListagemComponent } from './view/produto/listagem/listagem.component';
-import { CadastroComponent } from './view/produto/cadastro/cadastro.component';
+import { ListagemComponent } from './view/nota/listagem/listagem.component';
+import { CadastroComponent } from './view/nota/cadastro/cadastro.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -49,7 +50,7 @@ import {
   MatStepperModule,
 } from '@angular/material';
 import { appRoutes } from './app.routing';
-import { EmpresaComponent } from './view/empresa/empresa.component';
+import { EmpresaService } from './service/empresa/empresa.service';
 
 @NgModule({
   exports: [
@@ -85,7 +86,7 @@ import { EmpresaComponent } from './view/empresa/empresa.component';
     MatToolbarModule,
     MatTooltipModule,
   ],
-  declarations: [EmpresaComponent]
+  declarations: []
 })
 export class MaterialModule { }
 
@@ -111,6 +112,8 @@ export class MaterialModule { }
   providers: [
     RestService,
     ProductService,
+    EmpresaService,
+    NotaService,
     FeedbackService,
   ],
   bootstrap: [AppComponent]
